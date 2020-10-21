@@ -16,5 +16,6 @@
         <module>chat_back_interface</module>
         <module>chat_back_server</module>
         <module>chat_back_jpa_H</module>
+        <module>chat_back_generator</module>
     </modules>
 </project>
