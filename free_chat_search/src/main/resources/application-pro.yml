@@ -1,0 +1,34 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: search-service
+#  autoconfigure.exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 192.168.1.112:9300
+      #cluster-nodes: 192.168.154.201:9300
+#  datasource:
+#      url: jdbc:mysql://127.0.0.1:3306/yun?characterEncoding=UTF-8&useSSL=false
+#      username: root
+#      password: root
+  rabbitmq:
+    host: 192.168.1.112
+    port: 5672
+    username: liudongyang
+    password: ldy3061128
+    virtual-host: /
+
+  jackson:
+    default-property-inclusion: non_null
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.112:10086/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 192.168.1.112
+searchFanoutExchange: searchFanoutExchange
+
+

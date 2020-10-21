@@ -1,0 +1,11 @@
+mvn clean package docker:build
+
+docker run -di --name=eureka -p 10086:10086 -e spring.profiles.active=pro smart_chat/free_chat_registry
+
+docker run -di --name=back_server -p 8081:8081 -e spring.profiles.active=pro chat_back_server/chat_back_server
+
+docker run -di --name=search -p 8083:8083 -e spring.profiles.active=pro smart_chat/free_chat_search
+
+docker run -di --name=task -p 8085:8085 -e spring.profiles.active=pro smart_chat/free_chat_task
+
+docker logs -t -f --tail 100

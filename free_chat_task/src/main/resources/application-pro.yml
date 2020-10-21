@@ -1,0 +1,27 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: chat-task
+  rabbitmq:
+    host: 192.168.1.112
+    port: 5672
+#    username: guest
+#    password: guest
+    username: liudongyang
+    password: ldy3061128
+    virtual-host: /
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.112:10086/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 192.168.1.112
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000

@@ -1,0 +1,46 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: api-gateway
+  redis:
+    host:  127.0.0.1
+    port:  6379
+    timeout: 500000 #连接超时 毫秒
+    jedis:
+      pool:
+        maxActive: 3
+        maxIdle: 3
+        minIdle: 1
+        maxWait: -1 #连接池最大等行时间 -1没有限制
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+zuul:
+  prefix: /api
+  retryable: true
+  routes:
+    search-service: /search/**
+    back-server:
+      path: /keyWord/**
+      serviceId: back-service
+      strip-prefix: false #true：代理转发时去掉前缀，false:代理转发时不去掉前缀
+      sensitiveHeaders:  #默认zuul会屏蔽cookie，cookie不会传到下游服务，这里设置为空则取消默认的黑名单，如果设置了具体的头信息则不会传到下游服务
+
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+  OkToRetryOnAllOperations: true # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 1 # 同一实例的重试次数
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
+auth:
+  tokenValiditySeconds: 1200

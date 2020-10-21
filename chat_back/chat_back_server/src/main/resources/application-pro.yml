@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: back-service
+  datasource:
+    driver: com.mysql.jdbc.Driver
+#    driver: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.112:3306/yun?characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+  cloud:
+    compatibility-verifier:
+      enabled: false #去掉springcloud的版本兼容验证
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.1.112:10086/eureka
+  instance:
+    prefer-ip-address: true  #当你获取host时，返回的不是主机名，而是ip
+    ip-address: 192.168.1.112
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
