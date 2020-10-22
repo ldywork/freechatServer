@@ -1,4 +1,4 @@
-package com.chat.backcontroll.mapper;
+package com.chat.backcontroll.service;
 
 import com.chat.backcontroll.model.UmsAdminRoleRelation;
 import com.chat.backcontroll.model.UmsAdminRoleRelationExample;
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface UmsAdminRoleRelationMapper {
+public interface UmsAdminRoleRelationService {
     int countByExample(UmsAdminRoleRelationExample example);
 
     int deleteByExample(UmsAdminRoleRelationExample example);
@@ -27,8 +27,8 @@ public interface UmsAdminRoleRelationMapper {
     int updateByExample(@Param("record") UmsAdminRoleRelation record, @Param("example") UmsAdminRoleRelationExample example);
 
     int updateByPrimaryKeySelective(UmsAdminRoleRelation record);
-    int updateByPrimaryKey(UmsAdminRoleRelation record);
 
+    int updateByPrimaryKey(UmsAdminRoleRelation record);
 
     List<UmsPermission> getPermissionList(Long adminId);
 }

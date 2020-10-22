@@ -27,32 +27,32 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     private UmsAdminMapper umsAdminMapper;
     @Override
     public int countByExample(UmsAdminExample example) {
-        return 0;
+        return umsAdminMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(UmsAdminExample example) {
-        return 0;
+        return umsAdminMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Long id) {
-        return 0;
+        return umsAdminMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public int insert(UmsAdmin record) {
-        return 0;
+        return umsAdminMapper.insert(record);
     }
 
     @Override
     public int insertSelective(UmsAdmin record) {
-        return 0;
+        return umsAdminMapper.insertSelective(record);
     }
 
     @Override
     public List<UmsAdmin> selectByExample(UmsAdminExample example) {
-        return null;
+        return umsAdminMapper.selectByExample(example);
     }
 
     @Override
@@ -62,21 +62,21 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public int updateByExampleSelective(UmsAdmin record, UmsAdminExample example) {
-        return 0;
+        return umsAdminMapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(UmsAdmin record, UmsAdminExample example) {
-        return 0;
+        return umsAdminMapper.updateByExample(record,example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(UmsAdmin record) {
-        return 0;
+        return umsAdminMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(UmsAdmin record) {
-        return 0;
+        return umsAdminMapper.updateByPrimaryKey(record);
     }
 }

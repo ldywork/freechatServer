@@ -18,7 +18,7 @@
         <module>free_chat_user</module>
         <module>free_chat_auth2</module>
         <module>free_chat_model</module>
-        <module>chat_back/model</module>
+        <module>free_chat_security</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -92,12 +92,7 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
-            <!--FastDFS客户端-->
-            <dependency>
-                <groupId>com.github.tobato</groupId>
-                <artifactId>fastdfs-client</artifactId>
-                <version>${fastDFS.client.version}</version>
-            </dependency>
+
 
             <dependency>
                 <groupId>javax.persistence</groupId>
@@ -125,19 +120,6 @@
                 <version>${spring.amqp.version}</version>
             </dependency>
 
-            <!--阿里云sdk-->
-            <dependency>
-                <groupId>com.aliyun</groupId>
-                <artifactId>aliyun-java-sdk-core</artifactId>
-                <version>${aliyun.sdk.version}</version>
-            </dependency>
-
-            <!--阿里云短信sdk-->
-            <dependency>
-                <groupId>com.aliyun</groupId>
-                <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
-                <version>${aliyun.sms.sdk.version}</version>
-            </dependency>
 
             <!--redis-->
             <dependency>
@@ -164,17 +146,8 @@
                 <version>${spring.security.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>${javax.servlet.version}</version>
-            </dependency>
 
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jwt.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
