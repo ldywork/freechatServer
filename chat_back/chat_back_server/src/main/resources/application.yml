@@ -8,17 +8,17 @@ spring:
    # driver: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/smart?characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
-    password: root
+    password: mysq@2018BaiYan.Com
   cloud:
     compatibility-verifier:
       enabled: false #去掉springcloud的版本兼容验证
-eureka:
-  client:
-    service-url:
-      defaultZone: http://192.168.1.5:10086/eureka
-  instance:
-    prefer-ip-address: true  #当你获取host时，返回的不是主机名，而是ip
-    ip-address: 192.168.1.5
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://192.168.1.5:10086/eureka
+#  instance:
+#    prefer-ip-address: true  #当你获取host时，返回的不是主机名，而是ip
+#    ip-address: 192.168.1.5
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

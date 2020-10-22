@@ -5,6 +5,7 @@ import com.chat.backcontroll.model.UmsAdmin;
 import com.chat.backcontroll.model.UmsAdminExample;
 import com.chat.backcontroll.service.UmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import java.util.List;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
+@Service
 public class UmsAdminServiceImpl implements UmsAdminService {
     @Autowired
     private UmsAdminMapper umsAdminMapper;

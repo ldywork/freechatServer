@@ -18,6 +18,7 @@
         <module>free_chat_user</module>
         <module>free_chat_auth2</module>
         <module>free_chat_model</module>
+        <module>chat_back/model</module>
     </modules>
     <packaging>pom</packaging>
 
