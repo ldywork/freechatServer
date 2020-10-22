@@ -1,7 +1,9 @@
 package com.chat.backcontroll.api;
 
 import com.chat.backcontroll.model.UmsAdmin;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @ProjectName: Parent
@@ -16,6 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Version: 1.0
  */
 public interface UmsAdminApi {
-    @GetMapping("umsAdmin/selectByPrimaryKey/{cid}")
-    public UmsAdmin selectByPrimaryKey(Long id);
+    @GetMapping("/umsAdmin/selectByPrimaryKey")
+    public UmsAdmin selectByPrimaryKey( Long id);
 }
