@@ -9,3 +9,5 @@ docker run -di --name=search -p 8083:8083 -e spring.profiles.active=pro smart_ch
 docker run -di --name=task -p 8085:8085 -e spring.profiles.active=pro smart_chat/free_chat_task
 
 docker logs -t -f --tail 100
+
+swagger-html  http://localhost:8091/swagger-ui.html

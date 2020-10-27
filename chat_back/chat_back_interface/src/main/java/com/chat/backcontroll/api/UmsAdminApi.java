@@ -3,10 +3,7 @@ package com.chat.backcontroll.api;
 import com.chat.backcontroll.model.UmsAdmin;
 import com.chat.backcontroll.model.UmsAdminExample;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +19,7 @@ import java.util.List;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
+@RequestMapping("/umsAdmin")
 public interface UmsAdminApi {
     @GetMapping("/selectByPrimaryKey")
     public UmsAdmin selectByPrimaryKey( @RequestParam("id") Long id);
@@ -35,7 +33,7 @@ public interface UmsAdminApi {
     int insert(@RequestBody UmsAdmin record);
     @GetMapping("/insertSelective")
     int insertSelective(@RequestBody UmsAdmin record);
-    @GetMapping("/selectByExample")
+    @PostMapping("/selectByExample")
     List<UmsAdmin> selectByExample(@RequestBody UmsAdminExample example);
     @GetMapping("/updateByExampleSelective")
     int updateByExampleSelective(@RequestParam("record") UmsAdmin record,@RequestParam("example") UmsAdminExample example);

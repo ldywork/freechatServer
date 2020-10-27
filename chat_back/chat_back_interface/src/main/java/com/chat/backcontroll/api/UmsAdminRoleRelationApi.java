@@ -6,10 +6,11 @@ import com.chat.backcontroll.model.UmsPermission;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
+@RequestMapping("/umsAdminRoleRelation")
 public interface UmsAdminRoleRelationApi {
     @GetMapping("/countByExample")
     int countByExample(@RequestBody UmsAdminRoleRelationExample example);

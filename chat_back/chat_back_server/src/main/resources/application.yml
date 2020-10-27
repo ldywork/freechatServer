@@ -8,7 +8,7 @@ spring:
    # driver: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/smart?characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
-    password: mysq@2018BaiYan.Com
+    password: mysql@2018BaiYan.Com
   cloud:
     compatibility-verifier:
       enabled: false #去掉springcloud的版本兼容验证
@@ -22,3 +22,6 @@ eureka:
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml

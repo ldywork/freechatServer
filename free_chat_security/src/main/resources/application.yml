@@ -2,6 +2,8 @@ server:
   port: 8091
 
 spring:
+  application:
+    name: free-chat-security
   datasource:
     url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
