@@ -8,6 +8,7 @@ import com.chat.backcontroll.model.UmsAdminExample;
 import com.chat.backcontroll.service.UmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,6 @@ import java.util.List;
  * @Version: 1.0
  */
 @RestController
-@RequestMapping("umsAdmin")
 public class UmsAdminController implements UmsAdminApi {
     @Autowired
     private UmsAdminService umsAdminService;
@@ -60,8 +60,9 @@ public class UmsAdminController implements UmsAdminApi {
     }
 
     @Override
-    public List<UmsAdmin> selectByExample(UmsAdminExample example) {
-        return umsAdminService.selectByExample(example);
+    public List<UmsAdmin> selectByExample( String userName) {
+
+        return umsAdminService.selectByExample(userName);
     }
 
     @Override

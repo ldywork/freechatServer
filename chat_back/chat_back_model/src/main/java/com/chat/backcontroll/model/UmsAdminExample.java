@@ -1,10 +1,13 @@
 package com.chat.backcontroll.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UmsAdminExample {
+public class UmsAdminExample implements Serializable {
+
+    private static final long serialVersionUID = -5272111097789584855L;
     protected String orderByClause;
 
     protected boolean distinct;

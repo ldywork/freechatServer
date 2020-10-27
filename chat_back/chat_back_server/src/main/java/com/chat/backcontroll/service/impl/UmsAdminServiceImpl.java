@@ -51,7 +51,9 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     }
 
     @Override
-    public List<UmsAdmin> selectByExample(UmsAdminExample example) {
+    public List<UmsAdmin> selectByExample( String userName) {
+        UmsAdminExample example = new UmsAdminExample();
+        example.createCriteria().andUsernameEqualTo(userName);
         return umsAdminMapper.selectByExample(example);
     }
 

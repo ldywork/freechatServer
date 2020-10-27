@@ -47,9 +47,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {
-        UmsAdminExample example = new UmsAdminExample();
-        example.createCriteria().andUsernameEqualTo(username);
-        List<UmsAdmin> adminList = umsAdminFeignClient.selectByExample(example);
+        List<UmsAdmin> adminList = umsAdminFeignClient.selectByExample(username);
         if (adminList != null && adminList.size() > 0) {
             return adminList.get(0);
         }
@@ -63,9 +61,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         umsAdmin.setCreateTime(new Date());
         umsAdmin.setStatus(1);
         //查询是否有相同用户名的用户
-        UmsAdminExample example = new UmsAdminExample();
-        example.createCriteria().andUsernameEqualTo(umsAdmin.getUsername());
-        List<UmsAdmin> umsAdminList = umsAdminFeignClient.selectByExample(example);
+        List<UmsAdmin> umsAdminList = umsAdminFeignClient.selectByExample(umsAdmin.getUsername());
         if (umsAdminList.size() > 0) {
             return null;
         }

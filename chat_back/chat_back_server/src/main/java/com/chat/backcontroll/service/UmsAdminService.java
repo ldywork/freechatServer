@@ -16,7 +16,7 @@ public interface UmsAdminService {
 
     int insertSelective(UmsAdmin record);
 
-    List<UmsAdmin> selectByExample(UmsAdminExample example);
+    List<UmsAdmin> selectByExample( String userName);
 
     UmsAdmin selectByPrimaryKey(Long id);
 

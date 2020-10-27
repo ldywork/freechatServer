@@ -2,7 +2,6 @@ package com.chat.backcontroll.api;
 
 import com.chat.backcontroll.model.UmsAdmin;
 import com.chat.backcontroll.model.UmsAdminExample;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,26 +20,26 @@ import java.util.List;
  */
 @RequestMapping("/umsAdmin")
 public interface UmsAdminApi {
-    @GetMapping("/selectByPrimaryKey")
+    @RequestMapping("/selectByPrimaryKey")
     public UmsAdmin selectByPrimaryKey( @RequestParam("id") Long id);
-    @GetMapping("/countByExample")
+    @RequestMapping("/countByExample")
     int countByExample(@RequestBody UmsAdminExample example);
-    @GetMapping("/deleteByExample")
+    @RequestMapping("/deleteByExample")
     int deleteByExample(@RequestBody UmsAdminExample example);
-    @GetMapping("/deleteByPrimaryKey")
+    @RequestMapping("/deleteByPrimaryKey")
     int deleteByPrimaryKey(@RequestParam("id")Long id);
-    @GetMapping("/insert")
+    @PostMapping("/insert")
     int insert(@RequestBody UmsAdmin record);
-    @GetMapping("/insertSelective")
+    @RequestMapping("/insertSelective")
     int insertSelective(@RequestBody UmsAdmin record);
     @PostMapping("/selectByExample")
-    List<UmsAdmin> selectByExample(@RequestBody UmsAdminExample example);
-    @GetMapping("/updateByExampleSelective")
+    List<UmsAdmin> selectByExample(@RequestParam String userName);
+    @RequestMapping("/updateByExampleSelective")
     int updateByExampleSelective(@RequestParam("record") UmsAdmin record,@RequestParam("example") UmsAdminExample example);
-    @GetMapping("/updateByExample")
+    @RequestMapping("/updateByExample")
     int updateByExample(@RequestParam("record") UmsAdmin record,@RequestParam("example") UmsAdminExample example);
-    @GetMapping("/updateByPrimaryKeySelective")
+    @RequestMapping("/updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(@RequestBody UmsAdmin record);
-    @GetMapping("/updateByPrimaryKey")
+    @RequestMapping("/updateByPrimaryKey")
     int updateByPrimaryKey(@RequestBody UmsAdmin record);
 }
