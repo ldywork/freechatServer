@@ -2,7 +2,6 @@ package com.chat.security.service.impl;
 
 
 import com.chat.backcontroll.model.UmsAdmin;
-import com.chat.backcontroll.model.UmsAdminExample;
 import com.chat.backcontroll.model.UmsPermission;
 import com.chat.security.feignapi.UmsAdminFeignClient;
 import com.chat.security.feignapi.UmsAdminRoleRelationFeignClient;
@@ -76,10 +75,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     public String login(String username, String password) {
         String token = null;
         try {
+            //这里是调用的SecurityConfig里边的方法来创建的这个接口的实现类型，这个loadByUserName就是那个方法里边的lambda表达式
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             if (!passwordEncoder.matches(password, userDetails.getPassword())) {
                 throw new BadCredentialsException("密码不正确");
             }
+            //创建token
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             token = jwtTokenUtil.generateToken(userDetails);

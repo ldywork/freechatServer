@@ -11,3 +11,16 @@ docker run -di --name=task -p 8085:8085 -e spring.profiles.active=pro smart_chat
 docker logs -t -f --tail 100
 
 swagger-html  http://localhost:8091/swagger-ui.html
+
+注意在通过feign来调用生产者的时候，实现类的controller层里边参数也要写@RequestBody
+
+
+Spring Security使用一个Authentication对象来描述当前用户的相关信息。SecurityContextHolder中持有的是当前用户的SecurityContext，
+而SecurityContext持有的是代表当前用户相关信息的Authentication的引用。这个Authentication对象不需要我们自己去创建，在与系统交互的过程中，
+Spring Security会自动为我们创建相应的Authentication对象，然后赋值给当前的SecurityContext。但是往往我们需要在程序中获取当前用户的相关信息，
+比如最常见的是获取当前登录用户的用户名。在程序的任何地方，通过如下方式我们可以获取到当前用户的用户。
+  public User getCurrentUser(){
+        User user=(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return user;
+    }
+通过Authentication.getPrincipal()可以获取到代表当前用户的信息，这个对象通常是UserDetails的实例。获取当前用户的用户名是一种比较常见的需求。

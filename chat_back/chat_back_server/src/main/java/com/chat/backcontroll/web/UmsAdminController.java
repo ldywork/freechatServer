@@ -50,7 +50,7 @@ public class UmsAdminController implements UmsAdminApi {
     }
 
     @Override
-    public int insert(UmsAdmin record) {
+    public int insert(@RequestBody UmsAdmin record) {
         return umsAdminService.insert(record);
     }
 
