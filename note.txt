@@ -12,6 +12,7 @@ docker logs -t -f --tail 100
 
 swagger-html  http://localhost:8091/swagger-ui.html
 
+
 注意在通过feign来调用生产者的时候，实现类的controller层里边参数也要写@RequestBody
 
 
