@@ -25,3 +25,7 @@ Spring Security会自动为我们创建相应的Authentication对象，然后赋
         return user;
     }
 通过Authentication.getPrincipal()可以获取到代表当前用户的信息，这个对象通常是UserDetails的实例。获取当前用户的用户名是一种比较常见的需求。
+https://www.cnblogs.com/NextNight/p/6837407.html
+https://www.pianshen.com/article/7085303599/
+https://blog.csdn.net/alan_liuyue/article/details/78361431
+
