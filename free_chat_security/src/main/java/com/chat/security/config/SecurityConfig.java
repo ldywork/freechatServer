@@ -102,7 +102,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             throw new UsernameNotFoundException("用户名或密码错误");
         };
     }
-
+    /**
+     * @Method 在用户名和密码校验前添加的过滤器，如果有jwt的token，会自行根据token信息进行登录
+     * @Author User
+     * @Version  1.0
+     * @Description
+     * @Param
+     * @Return
+     * @Exception 
+     * @Date 2020/11/7 15:49
+     */
     @Bean
     public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter(){
         return new JwtAuthenticationTokenFilter();

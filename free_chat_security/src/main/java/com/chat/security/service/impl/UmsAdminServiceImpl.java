@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -77,10 +78,11 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         try {
             //这里是调用的SecurityConfig里边的方法来创建的这个接口的实现类型，这个loadByUserName就是那个方法里边的lambda表达式
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            //passwordEncoder这个东西也是从SecurityConfig里边创建的
             if (!passwordEncoder.matches(password, userDetails.getPassword())) {
-                throw new BadCredentialsException("密码不正确");
+                throw new BadCredentialsException("验证失败");
             }
-            //创建token
+            //将用户的信息放到了SecurityContextImpl类的属性里边
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             token = jwtTokenUtil.generateToken(userDetails);
