@@ -86,6 +86,9 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             token = jwtTokenUtil.generateToken(userDetails);
+            //将用户的信息保存到redis
+
+
         } catch (AuthenticationException e) {
             LOGGER.warn("登录异常:{}", e.getMessage());
         }
@@ -95,6 +98,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public List<UmsPermission> getPermissionList(Long adminId) {
-        return umsAdminRoleRelationFeignClient.getPermissionList(adminId);
+        List<UmsPermission> permissionList = umsAdminRoleRelationFeignClient.getPermissionList(adminId);
+        return permissionList;
     }
 }

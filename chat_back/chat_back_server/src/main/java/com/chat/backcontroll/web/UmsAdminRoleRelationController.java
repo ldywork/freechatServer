@@ -81,6 +81,7 @@ public class UmsAdminRoleRelationController implements UmsAdminRoleRelationApi {
 
     @Override
     public List<UmsPermission> getPermissionList(Long adminId) {
-        return umsAdminRoleRelationService.getPermissionList(adminId);
+        List<UmsPermission> permissionList = umsAdminRoleRelationService.getPermissionList(adminId);
+        return permissionList;
     }
 }

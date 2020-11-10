@@ -78,6 +78,7 @@ public class UmsAdminRoleRelationServiceImpl implements UmsAdminRoleRelationServ
 
     @Override
     public List<UmsPermission> getPermissionList(Long adminId) {
-        return umsAdminRoleRelationMapper.getPermissionList(adminId);
+        List<UmsPermission> permissionList = umsAdminRoleRelationMapper.getPermissionList(adminId);
+        return permissionList;
     }
 }

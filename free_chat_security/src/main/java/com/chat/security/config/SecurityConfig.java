@@ -78,7 +78,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(restfulAccessDeniedHandler)
                 .authenticationEntryPoint(restAuthenticationEntryPoint);
     }
-
+    /**
+     * @Method 认证的方法
+     * @Author User
+     * @Version  1.0
+     * @Description
+     * @Param
+     * @Return
+     * @Exception
+     * @Date 2020/11/10 14:53
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())
