@@ -6,7 +6,8 @@ spring:
   datasource:
     driver: com.mysql.jdbc.Driver
 #    driver: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.1.112:3306/yun?characterEncoding=UTF-8&useSSL=false
+#    url: jdbc:mysql://192.168.1.112:3306/yun?characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/yun?characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
   cloud:

@@ -2,6 +2,7 @@ package com.chat.gateway.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.chat.search.common.numutils.NumberKits;
 import com.chat.search.common.utils.CookieUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class AuthService {
             return null;
         }
         //取到jwt令牌
-        String jwt = authorization.substring(7);
+        String jwt = authorization.substring(NumberKits.SEVEN);
         return jwt;
 
 

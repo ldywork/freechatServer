@@ -11,6 +11,7 @@ docker run -di --name=task -p 8085:8085 -e spring.profiles.active=pro smart_chat
 docker logs -t -f --tail 100
 
 swagger-html  http://localhost:8091/swagger-ui.html
+swagger-html  http://localhost:10010/api/security/swagger-ui.html
 
 
 注意在通过feign来调用生产者的时候，实现类的controller层里边参数也要写@RequestBody
@@ -29,3 +30,5 @@ https://www.cnblogs.com/NextNight/p/6837407.html
 https://www.pianshen.com/article/7085303599/
 https://blog.csdn.net/alan_liuyue/article/details/78361431
 
+security获取当前的登录信息
+Authentication auth = SecurityContextHolder.getContext().getAuthentication();

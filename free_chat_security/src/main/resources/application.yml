@@ -3,11 +3,18 @@ server:
 
 spring:
   application:
-    name: free-chat-security
+    name: security-service
   datasource:
     url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: mysql@2018BaiYan.Com
+  redis:
+    database: 0
+    port: 6379
+    host: localhost
+    password: lng_baiyan
+    authtime: 6000 #用于登录的时候查询用户的信息保存到redis的存活时间
+    authprefix: anthUserMsg# #用于用户登录的时候,用户信息保存redis的key前缀
 # 自定义jwt key
 jwt:
   tokenHeader: Authorization #JWT存储的请求头

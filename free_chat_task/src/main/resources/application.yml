@@ -4,8 +4,9 @@ spring:
   application:
     name: chat-task
   rabbitmq:
-    host: 192.168.1.112
-    port: 5672
+#    host: 192.168.1.112
+#    port: 5672
+
 #    username: guest
 #    password: guest
     username: liudongyang

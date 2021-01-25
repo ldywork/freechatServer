@@ -43,10 +43,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
     @Override
+    //configure(HttpSecurity httpSecurity)：用于配置需要拦截的url路径、jwt过滤器及出异常后的处理器；
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf()// 由于使用的是JWT，我们这里不需要csrf
                 .disable()
-                .sessionManagement()// 基于token，所以不需要session
+                .sessionManagement()// 基于token，所以不需要session,在这种情况下logout登出是用不了的,因为这个登出的操作是基于session来实现的操作
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
@@ -79,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint);
     }
     /**
-     * @Method 认证的方法
+     * @Method configure(AuthenticationManagerBuilder auth)：用于配置UserDetailsService及PasswordEncoder；
      * @Author User
      * @Version  1.0
      * @Description

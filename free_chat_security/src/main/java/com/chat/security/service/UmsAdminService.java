@@ -1,6 +1,7 @@
 package com.chat.security.service;
 
 
+import com.chat.backcontroll.api.CommonResult;
 import com.chat.backcontroll.model.UmsAdmin;
 import com.chat.backcontroll.model.UmsPermission;
 
@@ -33,4 +34,8 @@ public interface UmsAdminService {
      * 获取用户所有权限（包括角色权限和+-权限）
      */
     List<UmsPermission> getPermissionList(Long adminId);
+    /**
+     * 退出登录
+     */
+    public CommonResult logout();
 }

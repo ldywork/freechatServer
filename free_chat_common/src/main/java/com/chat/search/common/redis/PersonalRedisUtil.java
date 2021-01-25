@@ -1,10 +1,10 @@
 package com.chat.search.common.redis;
  
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -13,13 +13,14 @@ import java.util.concurrent.TimeUnit;
 /**
  * Redis工具类
  *
- * @author zhangzhixiang
+ * @author ldy
  * @date 2019年06月19日
+ *
  */
 @Component
 public  final class PersonalRedisUtil {
  
-    @Autowired
+    @Resource
     private  RedisTemplate<String, Object> redisTemplate;
 
  

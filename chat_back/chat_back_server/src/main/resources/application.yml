@@ -5,7 +5,6 @@ spring:
     name: back-service
   datasource:
     driver: com.mysql.jdbc.Driver
-   # driver: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/smart?characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: mysql@2018BaiYan.Com

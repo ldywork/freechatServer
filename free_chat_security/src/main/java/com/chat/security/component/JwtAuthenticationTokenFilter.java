@@ -1,5 +1,6 @@
 package com.chat.security.component;
 
+import com.chat.search.common.redis.PersonalRedisUtil;
 import com.chat.security.utils.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private String tokenHeader;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
-
+    @Value("${spring.redis.authprefix}")
+    private String authprefix;
+    @Value("${spring.redis.authtime}")
+    private Integer authtime;
+    @Autowired
+    private PersonalRedisUtil personalRedisUtil;
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -44,15 +50,27 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             String username = jwtTokenUtil.getUserNameFromToken(authToken);
             LOGGER.info("checking username:{}", username);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-                if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-                    //创建授权信息
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    LOGGER.info("authenticated user:{}", username);
-                    //赋值授权信息
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                //根据用户名称从redis中获取用户的信息
+                UserDetails userDetails = (UserDetails)personalRedisUtil.get(authprefix+username);
+//              UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+                if (null != userDetails){
+                    //刷新redis中用户的时间
+                    personalRedisUtil.set(authprefix+username,userDetails,authtime);
+                    //刷新token
+                    if (jwtTokenUtil.canRefresh(authToken)){
+                        String s = jwtTokenUtil.refreshToken(authToken);
+                        System.out.println(s);
+                    }
+                    if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+                        //创建授权信息
+                        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        LOGGER.info("authenticated user:{}", username);
+                        //赋值授权信息
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    }
                 }
+
             }
         }
         chain.doFilter(request, response);

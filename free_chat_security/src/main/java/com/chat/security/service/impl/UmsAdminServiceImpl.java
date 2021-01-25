@@ -1,8 +1,11 @@
 package com.chat.security.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
+import com.chat.backcontroll.api.CommonResult;
 import com.chat.backcontroll.model.UmsAdmin;
 import com.chat.backcontroll.model.UmsPermission;
+import com.chat.search.common.redis.PersonalRedisUtil;
 import com.chat.security.feignapi.UmsAdminFeignClient;
 import com.chat.security.feignapi.UmsAdminRoleRelationFeignClient;
 import com.chat.security.service.UmsAdminService;
@@ -40,11 +43,16 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     private PasswordEncoder passwordEncoder;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+    @Value("${spring.redis.authtime}")
+    private Integer authtime;
+    @Value("${spring.redis.authprefix}")
+    private String authprefix;
     @Autowired
     private UmsAdminFeignClient umsAdminFeignClient;
     @Autowired
     private UmsAdminRoleRelationFeignClient umsAdminRoleRelationFeignClient;
-
+    @Autowired
+    private PersonalRedisUtil personalRedisUtil;
     @Override
     public UmsAdmin getAdminByUsername(String username) {
         List<UmsAdmin> adminList = umsAdminFeignClient.selectByExample(username);
@@ -87,7 +95,8 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             token = jwtTokenUtil.generateToken(userDetails);
             //将用户的信息保存到redis
-
+            Object o = JSON.toJSON(userDetails);
+            personalRedisUtil.set(authprefix+username, o,authtime);
 
         } catch (AuthenticationException e) {
             LOGGER.warn("登录异常:{}", e.getMessage());
@@ -100,5 +109,21 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     public List<UmsPermission> getPermissionList(Long adminId) {
         List<UmsPermission> permissionList = umsAdminRoleRelationFeignClient.getPermissionList(adminId);
         return permissionList;
+    }
+
+    @Override
+    public CommonResult logout() {
+        //获取当前登录的用户信息
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (null == auth){
+            return CommonResult.validateFailed("获取用户信息失败");
+        }
+        //获取用户的名称
+        final String name = auth.getName();
+        if (null == auth){
+            return CommonResult.validateFailed("获取用户名称失败");
+        }
+        personalRedisUtil.del(authprefix+name);
+        return CommonResult.success("退出成功");
     }
 }

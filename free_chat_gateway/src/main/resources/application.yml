@@ -7,6 +7,9 @@ spring:
     host:  127.0.0.1
     port:  6379
     timeout: 500000 #连接超时 毫秒
+    password: lng_baiyan
+    authtime: 6000 #用于登录的时候查询用户的信息保存到redis的存活时间
+    authprefix: anthUserMsg# #用于用户登录的时候,用户信息保存redis的key前缀
     jedis:
       pool:
         maxActive: 3
@@ -23,6 +26,7 @@ zuul:
   retryable: true
   routes:
     search-service: /search/**
+    security-service: /security/**
     back-server:
       path: /keyWord/**
       serviceId: back-service
@@ -44,3 +48,10 @@ hystrix:
             timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
 auth:
   tokenValiditySeconds: 1200
+zuulfilter:
+  dochainflag: login,register,swagger,api-docs
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mySecret #JWT加解密使用的密钥
+  expiration: 10 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer  #JWT负载中拿到开头
