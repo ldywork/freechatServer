@@ -2,10 +2,12 @@ package com.chat.security.service.impl;
 
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.chat.backcontroll.api.CommonResult;
 import com.chat.backcontroll.model.UmsAdmin;
 import com.chat.backcontroll.model.UmsPermission;
 import com.chat.search.common.redis.PersonalRedisUtil;
+import com.chat.security.dto.AdminUserDetails;
 import com.chat.security.feignapi.UmsAdminFeignClient;
 import com.chat.security.feignapi.UmsAdminRoleRelationFeignClient;
 import com.chat.security.service.UmsAdminService;
@@ -95,8 +97,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             token = jwtTokenUtil.generateToken(userDetails);
             //将用户的信息保存到redis
-            Object o = JSON.toJSON(userDetails);
-            personalRedisUtil.set(authprefix+username, o,authtime);
+            personalRedisUtil.set(authprefix+username, JSONObject.toJSONString(userDetails),authtime);
 
         } catch (AuthenticationException e) {
             LOGGER.warn("登录异常:{}", e.getMessage());

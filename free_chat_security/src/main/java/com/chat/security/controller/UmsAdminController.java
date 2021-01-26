@@ -74,7 +74,7 @@ public class UmsAdminController {
     @ApiOperation("获取用户所有权限（包括+-权限）")
     @RequestMapping(value = "/permission/{adminId}", method = RequestMethod.GET)
     @ResponseBody
-    @PreAuthorize("hasAuthority('pms:brand:read')")
+    @PreAuthorize("hasAuthority('pms:brand:reads')")
     public CommonResult<List<UmsPermission>> getPermissionList(@PathVariable Long adminId) {
         List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
         return CommonResult.success(permissionList);
